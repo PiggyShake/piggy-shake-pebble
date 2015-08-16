@@ -1,0 +1,28 @@
+{
+    "appKeys": {},
+    "capabilities": [
+        "configurable"
+    ],
+    "companyName": "calebcoffie@gmail.com",
+    "longName": "PiggyShake",
+    "projectType": "native",
+    "resources": {
+        "media": [
+            {
+                "file": "data/myimage.png",
+                "name": "ANIMATION",
+                "type": "raw"
+            }
+        ]
+    },
+    "sdkVersion": "3",
+    "shortName": "PiggyShake",
+    "targetPlatforms": [
+        "basalt"
+    ],
+    "uuid": "1a651aa4-edec-4955-bf51-7c785e2f39fb",
+    "versionLabel": "1.0",
+    "watchapp": {
+        "watchface": true
+    }
+}
