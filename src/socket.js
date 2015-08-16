@@ -1,10 +1,18 @@
+// Configuration settings
+if (localStorage.getItem("username") === null) {
+  localStorage.setItem("username", "unknown");
+}
+if (localStorage.getItem("groupID") === null) {
+  localStorage.setItem("groupID", "Default");
+}
+
 var reconnectInterval = 1000 * 3; // milliseconds
 var WS;
 var connect = function(){
-    WS = new WebSocket('ws://piggy-ubuntu.cloudapp.net:8080');
+    WS = new WebSocket('ws://ws.piggyshake.com:8080');
     WS.onopen = function() {
         console.log('socket open');
-      WS.send('{"groupID": "' + "12" + '", "devID": "' + Pebble.getWatchToken() + '", "shake": "false"}');
+      WS.send('{"groupID": "' + localStorage.getItem("groupID") + '", "devID": "' + Pebble.getWatchToken() + '", "shake": "false"}');
     };
     WS.onerror = function() {
         console.log('socket error');
@@ -23,11 +31,16 @@ var connect = function(){
 };
 connect();
 
+// Listen for configuration menu launch
+Pebble.addEventListener('showConfiguration', function(e) {
+  // Show config page
+  Pebble.openURL('https://piggyshake.com/config.html');
+});
 
 // Listen for when an AppMessage is received
 Pebble.addEventListener('appmessage',
   function(e) {
     console.log('AppMessage received!');
-    WS.send('{"groupID": "' + "12" + '", "devID": "' + Pebble.getWatchToken() + '", "shake": "true"}');
+    WS.send('{"groupID": "' + localStorage.getItem("groupID") + '", "devID": "' + Pebble.getWatchToken() + '", "shake": "true"}');
   }                     
 );
