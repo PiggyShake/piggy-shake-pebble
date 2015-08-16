@@ -145,6 +145,9 @@ static void main_window_unload(Window *window) {
 }
 
 static void init() {
+  // Set backlight to auto
+  light_enable(false);
+  
   // Create main Window element and assign to pointer
   s_main_window = window_create();
 

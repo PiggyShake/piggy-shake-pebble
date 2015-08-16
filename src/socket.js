@@ -4,7 +4,7 @@ var connect = function(){
     WS = new WebSocket('ws://piggy-ubuntu.cloudapp.net:8080');
     WS.onopen = function() {
         console.log('socket open');
-        WS.send('{"groupID": "' + "12" + '", "devID": "' + Pebble.getWatchToken() + '"}');
+      WS.send('{"groupID": "' + "12" + '", "devID": "' + Pebble.getWatchToken() + '", "shake": "false"}');
     };
     WS.onerror = function() {
         console.log('socket error');
@@ -18,9 +18,8 @@ var connect = function(){
       // Shake here
       // Send to Pebble
       console.log("Received a shake from the server.");
-      Pebble.sendAppMessage({"SHAKE": true});
+      Pebble.sendAppMessage({"shake": true});
     };
-  
 };
 connect();
 
@@ -29,6 +28,6 @@ connect();
 Pebble.addEventListener('appmessage',
   function(e) {
     console.log('AppMessage received!');
-    WS.send('{"groupID": "' + "12" + '", "devID": "' + Pebble.getWatchToken() + '"}');
+    WS.send('{"groupID": "' + "12" + '", "devID": "' + Pebble.getWatchToken() + '", "shake": "true"}');
   }                     
 );
