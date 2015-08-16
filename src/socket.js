@@ -1,4 +1,4 @@
-var reconnectInterval = 1000 * 30; // milliseconds
+var reconnectInterval = 1000 * 3; // milliseconds
 var WS;
 var connect = function(){
     WS = new WebSocket('ws://piggy-ubuntu.cloudapp.net:8080');

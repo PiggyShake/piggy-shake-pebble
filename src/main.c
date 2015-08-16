@@ -3,7 +3,6 @@
 static Window *s_main_window;
 static TextLayer *s_time_layer;
 
-static GFont s_time_font;
 static GBitmap *s_bitmap = NULL;
 static BitmapLayer *s_bitmap_layer;
 static GBitmapSequence *s_sequence = NULL;
@@ -135,11 +134,14 @@ static void main_window_unload(Window *window) {
   // Destroy TextLayer
   text_layer_destroy(s_time_layer);
   
-  // Unload GFont
-  fonts_unload_custom_font(s_time_font);
-  
-  // Destroy image
+  // Destroy bitmap layer
   bitmap_layer_destroy(s_bitmap_layer);
+  
+  // Destroy GBitmap
+  gbitmap_destroy(s_bitmap);
+    
+  // Destroy GBitmap Sequence
+  gbitmap_sequence_destroy(s_sequence);
 }
 
 static void init() {
@@ -173,6 +175,9 @@ static void init() {
 }
 
 static void deinit() {
+  // Unload Main Window
+  main_window_unload(s_main_window);
+  
   // Destroy Main Window
   window_destroy(s_main_window);
 }
